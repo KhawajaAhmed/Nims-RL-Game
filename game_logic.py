@@ -44,5 +44,6 @@ class Game:
                 reward = 1 if winner == "Computer" else -1
                 self.agent.update_q_values(move_history, reward)
                 self.agent.save_q_values()
-
+                self.agent.explore_decay()
+                
             is_computer_turn = not is_computer_turn

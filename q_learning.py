@@ -1,14 +1,15 @@
 import os
 import random
-from config import MAX_MOVE, MAX_STICKS, Q_VALUES_FILE, LEARNING_RATE, EPSILON
+from config import MAX_MOVE, MAX_STICKS, Q_VALUES_FILE, LEARNING_RATE, EPSILON, EPSILON_DECAY
 class QLearningAgent:
 
-    def __init__(self,max_move=MAX_MOVE, max_sticks=MAX_STICKS, q_values_file=Q_VALUES_FILE, learning_rate=LEARNING_RATE, epsilon=EPSILON) -> None:
+    def __init__(self,max_move=MAX_MOVE, max_sticks=MAX_STICKS, q_values_file=Q_VALUES_FILE, learning_rate=LEARNING_RATE, epsilon=EPSILON,epsilon_decay = EPSILON_DECAY) -> None:
         self.max_move = max_move
         self.max_sticks = max_sticks
         self.q_values_file = q_values_file
         self.learning_rate = learning_rate
         self.epsilon = epsilon
+        self.epsilon_decay = epsilon_decay
         self.q_values = self.load_q_values()
 
     def load_q_values(self):
@@ -34,4 +35,7 @@ class QLearningAgent:
         for state, action, next_state, is_computer_turn in move_history:
             if is_computer_turn:
                 self.q_values[action - 1][state - 1] += self.learning_rate * reward
+
+    def explore_decay(self):
+        self.epsilon *= self.epsilon_decay 
     
