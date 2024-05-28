@@ -1,7 +1,6 @@
 import os
 import random
 from config import MAX_MOVE, MAX_STICKS, Q_VALUES_FILE, LEARNING_RATE, EPSILON
-
 class QLearningAgent:
 
     def __init__(self,max_move=MAX_MOVE, max_sticks=MAX_STICKS, q_values_file=Q_VALUES_FILE, learning_rate=LEARNING_RATE, epsilon=EPSILON) -> None:
@@ -17,7 +16,7 @@ class QLearningAgent:
             with open(self.q_values_file, 'r') as f:
                 q_values = [list(map(float, line.strip().split())) for line in f.readlines()]
         else:
-            q_values = [[0.0] * MAX_STICKS for _ in range(MAX_MOVE)]
+            q_values = [[0.0] * self.max_sticks for _ in range(self.max_move)]
         return q_values
 
     def save_q_values(self):
@@ -35,3 +34,4 @@ class QLearningAgent:
         for state, action, next_state, is_computer_turn in move_history:
             if is_computer_turn:
                 self.q_values[action - 1][state - 1] += self.learning_rate * reward
+    
