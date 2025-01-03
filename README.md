@@ -1,5 +1,5 @@
 ## Stick Game
-This is a simple command-line game where you play against the computer to remove sticks from a pile. The player and the computer take turns removing 1 to 4 sticks from the pile until there are no sticks left. The player who takes the last stick wins.
+A nims game with a Q-learning computer opponent. This is a command-line game where you play against the computer to remove sticks from a pile. The player and the computer take turns removing 1 to 4 sticks from the pile until there are no sticks left. The player who takes the last stick wins.
 
 ## How to Play
 - At each turn, you'll be prompted to choose the number of sticks to remove.
